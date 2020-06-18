@@ -1,0 +1,43 @@
+<br>
+<br>
+<br>
+<div class="row">
+    <div class="card shadow p-3 mb-5 bg-white rounded col-md-5 offset-md-4">
+        <h1 class="card-header text-center">Login</h1>
+        <br>
+        <form [formGroup]="loginForm" (ngSubmit)="login()" class="form">
+            <span class="ui-float-label">
+                <input id="float-input " type="text" size="30" pInputText type="email" formControlName="emailId" id="uEmailId">
+                <label for="float-input">Username</label>
+                <!-- <span class="error-message" *ngIf="loginForm.get('emailId').invalid 
+                    && loginForm.get('emailId').touched">Enter the valid email id
+                </span> -->
+            </span>
+            <br>
+            <br>
+            <span class="ui-float-label">
+                <input id="float-input " type="password" size="30" pInputText formControlName="password" id="uPass">
+                <label for="float-input">Password</label>
+                <!-- <span class="error-message" *ngIf="loginForm.get('password').invalid 
+                    && loginForm.get('password').touched">Enter a valid password
+                </span> -->
+            </span>
+            <br>
+            <br>
+            <button pButton label="LOGIN" name="submit" type="submit" [disabled]="loginForm.invalid"></button>
+            <br />
+        </form>
+        <div class="form-group">
+            <div *ngIf="errorMessage!=null" class="text-danger">
+                <p-message severity="error" class="text-danger" text="{{errorMessage}}"></p-message>
+            </div>
+            <div *ngIf="successMessage!=null" class="text-success">
+                {{successMessage}}
+            </div>
+        </div><br>
+        <!--can be a button or a link based on need -->
+        <div class="text-info text-center">-------------New user! Register here-------------</div>
+        <br>
+        <button pButton [routerLink]="['/register']" name="register" label="Register" class="ui-button-secondary"></button>
+    </div>
+</div>

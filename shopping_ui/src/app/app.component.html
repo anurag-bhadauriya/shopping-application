@@ -1,0 +1,94 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="container-fluid">
+    <nav class="navbar navbar-expand-sm bg-light navbar-light fixed-top border-bottom border-mute">
+        <a class="navbar-brand" href="#">
+            <img width="90px" style="margin-top:-12px" src="assets/img/images.png">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item" *ngIf="!loggedUser.uCredentials.uEmail">
+                    <a class="nav-link">
+                        <button pButton label="Login" icon="fa fa-sign-out" style="border: 2px solid rgba(92, 96, 102, 0.884);background-color: rgb(139, 132, 132)"
+                            routerLink="/login"></button>
+                    </a>
+                </li>
+                <li class="nav-item" *ngIf="loggedUser.uCredentials.uEmail">
+                    <a class="nav-link" routerLink="">
+                        <b>Welcome {{loggedUser.uProfile.uName}}!</b>
+                    </a>
+                </li>
+                <li class="nav-item" *ngIf="loggedUser.uCredentials.uEmail">
+                    <span class="glyphicon glyphicon-shopping-cart"></span>
+                    <a class="nav-link" [routerLink]="['/cart']" id="cart">
+                        <i class="fa fa-cart-plus" style="font-size: 20px"></i>
+                        <sup class="badge-dark badge-pill">{{loggedUser.uCart.length}}</sup>
+                    </a>
+                </li>
+                <li class="nav-item" *ngIf="loggedUser.uCredentials.uEmail">
+                    <a class="nav-link" [routerLink]="['/orders']">
+                        <b>View Orders</b>
+                    </a>
+                </li>
+
+                <li class="nav-item" *ngIf="loggedUser.uCredentials.uEmail">
+                    <a class="nav-link">
+                        <button pButton label="Logout" (click)="logout()" icon="fa fa-sign-out" style="margin-left:.25em; background-color: darkgray"></button>
+                    </a>
+                </li>
+                <li class="nav-item" *ngIf="loggedUser.uCredentials.uEmail">
+                    <a class="nav-link" (click)="visibleSidebar1 = true">
+                        <i class="fa fa-arrow-circle-left"></i>
+                    </a>
+                    <p-sidebar position="right" [(visible)]="visibleSidebar1" [baseZIndex]="0">
+                        <h6 style="font-weight:bold; margin-top: 70px">Hello</h6>
+                        <h5 style="font-weight:bold">
+                            <i class="fa fa-user-circle"></i>{{loggedUser.uProfile.uName}}</h5>
+                        <hr>
+                        <a class="nav-link card bg-secondary text-light" [routerLink]="['/cart']">
+                            <b>
+                                <i class="fa fa-shopping-cart"></i> Items in your cart </b>
+                        </a>
+                        <br>
+                        <a class="nav-link card bg-secondary text-light" [routerLink]="['/orders']">
+                            <b>
+                                <i class="fa fa-th-list"></i> Your previous orders</b>
+                        </a>
+                        <br>
+                        <a class="nav-link card bg-secondary text-light">
+                            <b>
+                                <i class="fa fa-edit"></i> Feedback </b>
+                        </a>
+                        <div>
+                            <textarea [(ngModel)]="feedbackText" rows="5" cols="30" pInputTextarea autoResize="autoResize"></textarea>
+                            <!-- <button pButton label="submit" [disabled]="pta==null" (click)="submitText()"></button> -->
+                            <button pButton label="submit" (click)="submitText()"></button>
+                            <br>
+                            <br>
+                            <p *ngIf="feedback" class="fade text-info"> Thank You for your Feedback...
+                                <br> Happy Shopping!!
+                            </p>
+
+                        </div>
+                        <a class="nav-link text-center">
+                            <button pButton label="Logout" (click)="logout()" icon="fa fa-sign-out" style="margin-left:.25em;border: 2px solid rgb(115, 164, 221)"></button>
+                        </a>
+                        <br> <br>
+                        <p style="font-size: 10px" class="text-center">
+                            <b>&copy; 2019, Hoopla.com, Inc. and its affiliates</b>
+                        </p>
+                    </p-sidebar>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<div class="container-fluid">
+    <br>
+    <br>
+    <br>
+    <router-outlet></router-outlet>
+    <!-- <app-cart></app-cart> -->
+</div>

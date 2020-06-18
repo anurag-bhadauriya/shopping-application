@@ -1,0 +1,131 @@
+<div class="row">
+  <div class=" col-md-5 offset-md-4">
+    <div class="card shadow p-3 mb-5 bg-white rounded">
+      <h1 class="card-header text-center">Register</h1><br>
+      <form [formGroup]="registerForm" (ngSubmit)="register()" class="form">
+        <div class="ui-inputgroup">
+          <span class="ui-inputgroup-addon">
+            <i class="fa fa-users"></i>
+          </span>
+          <span class="ui-float-label">
+            <input id="float-input " type="text" size="60" (blur)="check()" pInputText type="email" formControlName="emailId" id="uEmailId"
+              class="ng-dirty ng-invalid">
+            <label for="float-input">EmailId
+              <sup class="text-danger">*</sup>
+            </label>
+          </span>
+        </div>
+        <div>
+          <p-message severity="error" class="text-danger" [text]="registerForm.controls['emailId'].errors['required'] ? 'Email is required' : registerForm.controls['emailId'].errors['pattern'] ? 'Email is in Incorrect Format, must be like (e.g. abc@xyz.com)' : ''"
+            *ngIf="!registerForm.controls['emailId'].valid && registerForm.controls['emailId'].dirty"></p-message>
+        </div>
+        <div *ngIf="emailMsg!=null">
+          <p-message severity="error" class="text-danger" text="{{emailMsg}}"></p-message>
+        </div>
+        <br>
+        <br>
+        <div class="ui-inputgroup">
+          <span class="ui-inputgroup-addon">
+            <i class="fa fa-lock"></i>
+          </span>
+          <span class="ui-float-label">
+            <input id="float-input " pPassword pTooltip="Password must contain atleast 1 small case character,1 uppercase character,1 digit and 1 special character(!,@,#,$,%,^,&amp;,*)" tooltipEvent="focus" type="password" size="60" pInputText formControlName="password" id="uPass">
+            <label for="float-input">Password
+              <sup class="text-danger">*</sup>
+            </label>
+          </span>
+        </div>
+        <!-- <div>
+          <p-message severity="error" class="text-danger" [text]="registerForm.controls['password'].errors['required'] ? 'Password is required' : registerForm.controls['password'].errors['pattern'] ? 'Password must contain atleast 1 small case character,1 uppercase character,1 digit and 1 special character(!,@,#,$,%,^,&amp;,*)' : ''"
+            *ngIf="!registerForm.controls['password'].valid && registerForm.controls['password'].dirty"></p-message>
+        </div> -->
+        <br>
+        <br>
+        <div class="ui-inputgroup">
+          <span class="ui-inputgroup-addon">
+            <i class="fa fa-user"></i>
+          </span>
+          <span class="ui-float-label">
+            <input id="float-input " type="text" size="60" pInputText formControlName="name" id="uName">
+            <label for="float-input">Name
+              <sup class="text-danger">*</sup>
+            </label>
+          </span>
+        </div>
+        <div>
+          <p-message severity="error" class="text-danger" [text]="registerForm.controls['name'].errors['required'] ? 'Name is required' : registerForm.controls['name'].errors['pattern'] ? 'Name only contains alphabets and spaces and must not start or and with spaces' : ''"
+            *ngIf="!registerForm.controls['name'].valid && registerForm.controls['name'].dirty"></p-message>
+        </div>
+        <br>
+        <br>
+        <div class="ui-inputgroup">
+          <span class="ui-inputgroup-addon">
+            <i class="fa fa-calendar"></i>
+          </span>
+          <span class="ui-float-label">
+            <input id="float-input " type="text" size="60" onfocus="this.type='date'" onfocusout="this.type='text'" pInputText formControlName="dob"
+              id="uDOB">
+            <label for="float-input">Date Of Birth
+              <sup class="text-danger">*</sup>
+            </label>
+          </span>
+        </div>
+        <div>
+          <p-message severity="error" class="text-danger" [text]="registerForm.controls['dob'].errors['required'] ? 'DOB is required' : registerForm.controls['dob'].errors['dateError'] ? registerForm.controls['dob'].errors['dateError'].message : ''"
+            *ngIf="!registerForm.controls['dob'].valid && registerForm.controls['dob'].dirty"></p-message>
+        </div>
+        <br>
+        <br>
+        <div class="ui-inputgroup">
+          <span class="ui-inputgroup-addon">
+            <i class="fa fa-phone"></i>
+          </span>
+          <span class="ui-float-label">
+            <input id="float-input " type="text" size="60" pInputText formControlName="phoneNo" id="uPhone">
+            <label for="float-input">Phone No
+              <sup class="text-danger">*</sup>
+            </label>
+          </span>
+        </div>
+        <div>
+          <p-message severity='error' class="text-danger" [text]="registerForm.controls['phoneNo'].errors['required'] ? 'Phone Number is required' : registerForm.controls['phoneNo'].errors['pattern'] ? 'Phone No must be of 10 digits' : ''"
+            *ngIf="!registerForm.controls['phoneNo'].valid && registerForm.controls['phoneNo'].dirty"></p-message>
+        </div>
+        <br>
+        <br>
+        <div class="ui-inputgroup">
+          <span class="ui-inputgroup-addon">
+            <i class="fa fa-align-justify"></i>
+          </span>
+          <span class="ui-float-label">
+            <input id="float-input " type="text" size="60" pInputText formControlName="address" id="uAddress">
+            <label for="float-input">Address
+              <sup class="text-danger">*</sup>
+            </label>
+          </span>
+        </div>
+        <div>
+          <p-message severity="error" class="text-danger" [text]="registerForm.controls['address'].errors['required'] ? 'Address is required' : registerForm.controls['address'].errors['pattern'] ? 'Address must contain atleast 10 characters' : ''"
+            *ngIf="!registerForm.controls['address'].valid && registerForm.controls['address'].dirty"></p-message>
+        </div>
+        <br>
+        <br>
+
+        <button pButton type="submit" (click)="showSuccess()" name="register" label="Register" [disabled]="registerForm.invalid || emailMsg!=null "></button>
+        <br />
+        <p-messages name="success" [(value)]="msgs"></p-messages>
+
+      </form>
+      <!-- <div class="form-group" name="success">
+        <div *ngIf="errorMessage!=null" class="text-danger">
+          {{errorMessage}}
+        </div>
+        <div *ngIf="successMessage!=null" class="text-success">
+          {{successMessage}}
+        </div>
+      </div> -->
+      <!--can be a button or a link based on need -->
+
+    </div>
+  </div>
+</div>

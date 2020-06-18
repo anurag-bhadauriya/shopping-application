@@ -1,0 +1,101 @@
+<p-menubar [model]="items">
+    <div>
+        <input type="text" name="searchinput" pInputText placeholder="Search for a product" [(ngModel)]="searchKey">
+        <button [disabled]="searchKey==null" name="search" pButton label="Search" (click)="searchProducts(searchKey)" icon="fa fa-search"
+            style="margin-left:.25em"></button>
+    </div>
+</p-menubar>
+<br>
+
+<div class="row" *ngIf="slideShow">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ul class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+            <li data-target="#myCarousel" data-slide-to="3"></li>
+        </ul>
+
+        <!-- The slideshow -->
+        <div class="carousel-inner" role="listbox">
+            <div class="carousel-item active">
+                <img class="d-block w-100" src="../assets/img/clothing.png" alt="clothing" (click)="viewProductByCategory('Clothing')">
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" src="../assets/img/furnitures.png" alt="furnitures" (click)="viewProductByCategory('Furniture')">
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" src="../assets/img/shoes.png" alt="shoes" (click)="viewProductByCategory('Shoes')">
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" src="../assets/img/mobiles.png" alt="mobiles" (click)="viewProductByCategory('Electronics')">
+            </div>
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </a>
+    </div>
+</div>
+<div *ngIf="productShow" id="productshow">
+    <div class="ui-md-11 point">
+        <h3 class="text-center">
+            Showing products {{categorySelected}}
+        </h3>
+
+        <br>
+        <div class="row offset-1">
+
+            <div *ngFor="let data of details" class="ui-md-3 box" height="300">
+                <br>
+                <br>
+                <img class="img-thumbnail imgStyle" src="../../assets/img/{{data.image}}" alt="{{categorySelected}}">
+                <br>
+                <a [title]="data.pName" (click)="showDetails(data._id)" style="cursor: pointer;" class="text-info font-weight-bold">{{data.pName}}</a>
+                <br>
+                <span class="badge badge-pill badge-warning ">{{data.pRating}}
+                    <span class="fa fa-star-o"></span>
+                </span>
+                <br>
+                <div style="height:60px">{{data.pDescription}}</div>
+                <del style="color: grey">
+                    <h6>{{data.price | currency: 'INR':'symbol'}}</h6>
+                  </del>
+                <b style="height:60px">{{data.price*(1-data.pSeller.pDiscount) | currency: 'INR':'symbol'}}</b>
+                <br>
+                <button name="product" type="button" class="btn btn-primary" (click)="goToCart(data)" [disabled]="data.pSeller.pQuantity==0">Add to Cart</button>
+                <span class="text-danger" *ngIf="data.pSeller.pQuantity==0">OUT OF STOCK</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="snackbar">Successfully added to Cart!!</div>
+
+<section *ngIf="!productShow && noProduct">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <div>
+                    <h3 class="h2">
+                        The product you are looking for is not available!
+                    </h3>
+                    <a href="">Go to Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+<ngx-spinner bdColor="#ffffff" size="medium" color="#2259cf" type="square-jelly-box">
+    <p style="font-size: 20px; color: #2259cf">
+        <b>Loading...</b>
+    </p>
+</ngx-spinner>

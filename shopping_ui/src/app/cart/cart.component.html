@@ -1,0 +1,87 @@
+<br>
+<br>
+<br>
+
+<div *ngIf="cartItems.length==0">
+  <div class="col-md-7 offset-sm-3">
+    <div style="align-items: center;">
+      <img style=" height: 420px; width: 550px" src="../../assets/img/empty-cart.jpg" alt="">
+    </div>
+  </div>
+</div>
+<div *ngIf="cartItems.length!=0">
+  <div class="row">
+    <div class="col-md-7 offset-md-1">
+      <h4>
+        You have {{ cartItems.length }} products in your Cart.
+      </h4>
+      <div class="card shadow p-3 mb-5 bg-white rounded box" *ngFor="let item of cartItems;let i of index">
+        <div class="row">
+          <div class="col-2">
+            <img src="../../assets/img/{{ item.image }}" alt="not loading" width="100px" height="80px" class="img-fluid">
+          </div>
+          <div class="col-6">
+            <h4 class="text-primary" (click)="showDetails(item._id)">{{ item.pDescription |titlecase }}</h4>
+            <p *ngIf="item.pSeller.pQuantity-item.quantity>0">{{ item.pSeller.pQuantity-item.quantity }} products left in stock.</p>
+            <p *ngIf="item.pSeller.pQuantity-item.quantity<1" class="text-danger">Product not in stock </p>
+            <h6>
+              <b>Delivery Time:</b> Delivery in 7 business days.</h6>
+            <br>
+            <p>Quantity in cart:
+              <i class="fa fa-minus-circle" style="font-size:24px;" (click)="calculateBill(item,-1)">&nbsp;{{ item.quantity }}</i>&nbsp;
+              <i class="fa fa-plus-circle" style="font-size:24px;" (click)="calculateBill(item,1)"></i>
+
+              <!-- <a href="#" #quantity >  <span class="badge badge-secondary badge-pill">-</span>  </a>&nbsp; 
+              <a href="#" #quantity > <span class="badge badge-secondary badge-pill">+</span> </a> -->
+              <!-- <input type="number"  #quantity [value]="cartQuantity[i]"  (input)="calculateBill(item,quantity.value)" min=1> -->
+            </p>
+          </div>
+          <div class="col-3 ">
+            <b>Discounted Price:</b>
+            <!-- <br> {{ }} -->
+            <br>
+            <s>{{ item.price*item.quantity | currency:'INR' }}</s>
+            <br> {{ (1-item.pSeller.pDiscount)*item.price*item.quantity | currency:'INR' }}
+            <br>
+            <br>
+            <br>
+            <br>
+            <a (click)="removeFromCart(item._id)">
+              <button class="btn btn-danger">
+                <i class="fa fa-trash"></i> Remove item</button>
+            </a>
+            <!-- <a href="#"  class="text-danger"><i class="fa fa-trash"></i> Remove from cart</a> -->
+          </div>
+        </div>
+      </div>
+    </div>
+    &nbsp;&nbsp;&nbsp;
+    <div class="col-md-3">
+      <h3>Price Deatils:</h3>
+      <div class="card card shadow p-3 mb-5 bg-white rounded" *ngIf="count!=0">
+        <div class="row">
+          <b>Cart Total(MRP):</b> {{ cartTotal | currency:'INR' }}</div>
+        <hr>
+        <div class="row">
+          <b>Total Tax(17% by default):</b> {{ totalTax | currency:'INR' }}</div>
+        <hr>
+        <div class="row">
+          <b>Total Payable: {{ totalPayable | currency:'INR' }} </b>
+        </div>
+        <div class="row">
+          <button class="btn btn-primary ml-auto" (click)="checkout()">Checkout now</button>
+        </div>
+      </div>
+    </div>
+    <br>
+    <br>
+    <br>
+
+  </div>
+</div>
+
+<ngx-spinner bdColor="#ffffff" size="medium" color="#2259cf" type="ball-circus">
+  <p style="font-size: 20px; color: #2259cf">
+    <b>Please wait...Your Cart is getting ready...</b>
+  </p>
+</ngx-spinner>

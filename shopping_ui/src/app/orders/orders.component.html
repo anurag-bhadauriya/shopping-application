@@ -1,0 +1,26 @@
+
+  <div class="col-sm-8 offset-sm-2" >
+    <table class="table table-striped">
+      <tr style="background-color: rgb(155, 224, 224);" >
+        <th>Order Id</th>
+        <th> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Details</th>
+        <th>Ordered Date</th>
+        <th>Total Cost</th>
+      </tr>
+      <tr *ngFor="let item of itemsOrdered.reverse()" class="box">
+        <td>
+          <h6> {{ item.orderId }}</h6>
+        </td>
+        <td>
+          <tr *ngFor="let prod of item.products">
+            <td style="width: 100%">
+              Product Id <a style="cursor:pointer ;color: dodgerblue" (click)="showDetails(prod.pid)">{{ prod.pid }}</a> Quantity: {{ prod.qty }}
+            </td>
+          </tr>
+        </td>
+        <td>{{ item.orderDate | date:'mediumDate' }} </td>
+        <td>{{ item.price | currency:'INR'}}</td>
+      </tr>  
+    </table>  
+  </div>
+  
