@@ -1,0 +1,17 @@
+{
+    "rulesDirectory": [
+      "node_modules/codelyzer"
+    ],
+    "rules": {
+      "class-name": true,
+      "curly": true,
+      "import-spacing": true,
+      "max-line-length": [
+        true,
+        140
+      ],
+      "no-eval": true,
+      "no-var-keyword": true
+    }
+  }
+  

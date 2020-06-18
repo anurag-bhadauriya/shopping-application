@@ -102,3 +102,7 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Custom added files
+shopping_ui/package-lock.json
+shopping_web_service/package-lock.json

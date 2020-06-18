@@ -1,0 +1,65 @@
+<ngx-spinner bdColor="#ffffff" size="medium" color="#2259cf" type="square-jelly-box">
+  <p style="font-size: 20px; color: #2259cf">
+    <b>Loading...</b>
+  </p>
+</ngx-spinner>
+
+<div *ngIf="productObj!=null">
+  <div class="row" *ngIf="agree">
+    <div class="col-md-3 offset-md-2">
+      <br>
+      <img src="../assets/img/{{productObj.image}}" alt="only_image" class="img-fluid">
+    </div>
+    <div class="col-md-4">
+      {{productObj.pCategory}}
+      <h3>{{productObj.pName}}
+        <span class="badge badge-pill badge-warning text-light" style="font-size: 12px">
+          {{productObj.pRating}}
+          <i class="fa fa-star-o"></i>
+        </span>
+      </h3>
+      <h5>By Seller {{productObj.pSeller.sId}}</h5>
+      <h5 style="font-weight: bold">Description:</h5>
+      <h5>{{productObj.pDescription}}</h5>
+      <h5 style="font-weight: bold">Specification:</h5>
+      <ul>
+        <li>
+          <h5>
+            <b>Color:</b> {{productObj.color}}</h5>
+        </li>
+      </ul>
+      <h3>
+        <b>Price: </b>{{productObj.price*(1-productObj.pSeller.pDiscount) | currency: 'INR':'symbol'}}</h3>
+      <del style="color: grey">
+        <h4>{{productObj.price | currency: 'INR':'symbol'}}</h4>
+      </del>
+      <h3>
+        <span style="color: gold">{{productObj.pSeller.pDiscount | percent}} Off</span> +{{productObj.pSeller.pShippingCharges}} shipping charges
+      </h3>
+      <h4>
+        <b>Quantity left: </b>{{productObj.pSeller.pQuantity}}
+      </h4>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <button class="btn btn-success" (click)="goToCart(productObj)" [disabled]="productObj.pSeller.pQuantity==0">Add to cart</button>
+            <span class="text-danger" *ngIf="productObj.pSeller.pQuantity==0">OUT OF STOCK</span>
+          </div>
+          <div class="col-md-4 offset-md-2">
+            <button class="btn btn-warning" (click)="goBack()">Go Back</button>
+          </div>
+          <br>
+          <br>
+          <div class="col-md-4" *ngIf="show">
+            <button class="btn btn-info" [routerLink]="['/cart']">Go to cart</button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="errorMessage!=null" id="errorMessage">
+  <span class="text text-danger">{{errorMessage}}</span>
+</div>
