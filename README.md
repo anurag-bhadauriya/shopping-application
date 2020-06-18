@@ -25,8 +25,8 @@ NOTE: The backend assumes that the Mongodb server is running on port 27017 of yo
 
 1. Open command prompt inside "shopping_ui" directory.
 2. Run command "npm install" (This will install all the required dependencies for the ui project)
-3. Run command "ng serve" in "shopping_ui" directory (This will start the ui project on ort 4200).
-   Once project is compiled you cn access it using url "http;//localhost:4200".
+3. Run command "ng serve" in "shopping_ui" directory (This will start the ui project on port 4200).
+   Once project is compiled you can access it using url "http://localhost:4200".
 
 ## Running full application
 
