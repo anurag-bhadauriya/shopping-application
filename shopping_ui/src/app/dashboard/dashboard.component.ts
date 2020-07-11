@@ -23,6 +23,7 @@ export class DashboardComponent implements OnInit {
   slideShow: boolean;
   productShow: boolean;
   noProduct: boolean;
+  searchKey: string;
 
   constructor(private spinner: NgxSpinnerService, private router: Router,
     private route: ActivatedRoute, private viewService: ViewDetailsService) {

@@ -106,3 +106,5 @@ dist
 # Custom added files
 shopping_ui/package-lock.json
 shopping_web_service/package-lock.json
+shopping_web_service/ErrorLogger.txt
+shopping_web_service/RequestLogger.txt

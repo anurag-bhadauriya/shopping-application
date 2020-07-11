@@ -3925,3 +3925,10 @@ Thu Jun 18 2020 23:36:51 GMT+0530 (India Standard Time) PUT /cart/updateTheCart/
 Thu Jun 18 2020 23:36:52 GMT+0530 (India Standard Time) PUT /cart/updateTheCart/lucky@gmail.com
 Thu Jun 18 2020 23:36:52 GMT+0530 (India Standard Time) PUT /cart/updateTheCart/lucky@gmail.com
 Thu Jun 18 2020 23:36:55 GMT+0530 (India Standard Time) PUT /cart/updateTheCart/lucky@gmail.com
+Sat Jul 11 2020 17:54:30 GMT+0530 (India Standard Time) GET /
+Sat Jul 11 2020 17:54:50 GMT+0530 (India Standard Time) POST /user/login
+Sat Jul 11 2020 17:56:06 GMT+0530 (India Standard Time) GET /setupDb
+Sat Jul 11 2020 17:56:06 GMT+0530 (India Standard Time) GET /favicon.ico
+Sat Jul 11 2020 17:56:18 GMT+0530 (India Standard Time) POST /user/login
+Sat Jul 11 2020 18:02:01 GMT+0530 (India Standard Time) GET /product/search/Computer%20Table
+Sat Jul 11 2020 18:02:05 GMT+0530 (India Standard Time) PUT /cart/updateTheCart/lucky@gmail.com
