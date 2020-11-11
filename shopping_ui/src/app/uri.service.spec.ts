@@ -14,19 +14,7 @@ describe('UriService', () => {
   }));
 
   it('Check buildUserMicroServiceUri', inject([UriService], (service: UriService) => {
-    expect(service.buildUserMicroServiceUri()).toBe('http://localhost:3000/user/');
-  }));
-
-  it('Check buildProductMicroServiceUri', inject([UriService], (service: UriService) => {
-    expect(service.buildProductsMicroServiceUri()).toBe('http://localhost:8000/');
-  }));
-
-  it('Check buildCartMicroServiceUri', inject([UriService], (service: UriService) => {
-    expect(service.buildCartMicroServiceUri()).toBe('http://localhost:9000//');
-  }));
-
-  it('Check buildOrderMicroServiceUri', inject([UriService], (service: UriService) => {
-    expect(service.buildCartMicroServiceUri()).toBe('http://localhost:9000//');
+    expect(service.buildUserMicroServiceUri()).toBe('https://localhost:3000/user/');
   }));
 
 });

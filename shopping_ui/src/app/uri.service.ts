@@ -8,42 +8,20 @@
  */
 export class UriService {
 
-    //alterHost="myshec88866l"
-    /** productMicroService properties */
-    productMicroServiceUri = {
-        protocol: 'http',
-        host: "localhost",
-        port: '8000',
-        applicationName: ''
-    };
-
     /** userMicroServiceUri properties */
     userMicroServiceUri = {
-        protocol: 'http',
+        protocol: 'https',
         host: "localhost" /* 'vjeemys-09'  */ ,
         port: '3000',
         applicationName: 'user'
     };
 
-    /** cartMicroServiceUri properties */
-    cartMicroServiceUri = {
-        protocol: 'http',
-        host: "localhost" ,
-        port: '9000',
-        applicationName: '/'
-    };
-   
-
-    /**
-     * This function builds the uri required for accessing the various MicroServices
-     */
-    buildProductsMicroServiceUri() { 
-        return this.productMicroServiceUri.protocol + 
-            "://" + this.productMicroServiceUri.host + 
-            ":" + this.productMicroServiceUri.port + 
-            "/" + this.productMicroServiceUri.applicationName;
+    microServiceUri = {
+        protocol: 'https',
+        host: 'localhost',
+        port: '3000'
     }
-
+   
     buildUserMicroServiceUri() {
         return this.userMicroServiceUri.protocol + 
             "://" + this.userMicroServiceUri.host + 
@@ -51,10 +29,9 @@ export class UriService {
             "/" + this.userMicroServiceUri.applicationName+"/";
     }
 
-    buildCartMicroServiceUri() {
-        return this.cartMicroServiceUri.protocol + 
-            "://" + this.cartMicroServiceUri.host + 
-            ":" + this.cartMicroServiceUri.port + 
-            "/" + this.cartMicroServiceUri.applicationName;
+    buildMicroServiceUri() {
+        return this.microServiceUri.protocol +
+            "://" + this.microServiceUri.host +
+            ":" + this.microServiceUri.port + '/';
     }
 }

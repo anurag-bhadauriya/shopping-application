@@ -1,5 +1,7 @@
 const express = require('express');
 const app = express();
+const fs = require('fs');
+const https = require('https');
 const requestLogger = require('./utilities/requestLogger');
 const errorLogger = require('./utilities/errorLogger');
 const userRouter = require('./routes/userRouting');
@@ -20,7 +22,6 @@ app.use(errorLogger);
 
 
 app.get('/setupDb', (req, res, next) => {
-    console.log("hello");
     createDb.setupDb().then((data) => {
         res.send(data)
     }).catch((err) => {
@@ -28,5 +29,11 @@ app.get('/setupDb', (req, res, next) => {
     })
 })
 
-app.listen(3000);
-console.log("Hoopla Server Started!!");
+//To Run server over Https
+const privateKey  = fs.readFileSync('../ssl-certificate/server.key', 'utf8');
+const certificate = fs.readFileSync('../ssl-certificate/server.crt', 'utf8');
+const credentials = {key: privateKey, cert: certificate};
+const httpsServer = https.createServer(credentials, app);
+httpsServer.listen(3000, () => {
+    console.log('Hoopls service running on port 3000 over https!!');
+});

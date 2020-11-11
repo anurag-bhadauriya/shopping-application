@@ -17,7 +17,7 @@ NOTE: All backend related code is present in shopping_web_service
 NOTE: The backend assumes that the Mongodb server is running on port 27017 of your machine. Pls make sure of port and that the mongodb server is running
 
 1. Start the backend server using above method.
-2. Open the browser and hit the url "http://localhost:3000/setupDb" (This will create a DB named HooplaDb and also put some data on it). "Insertion succssfull" will come up once insertion is done.
+2. Open the browser and hit the url "https://localhost:3000/setupDb" (This will create a DB named HooplaDb and also put some data on it). "Insertion succssfull" will come up once insertion is done.
 3. For confirmation you can check up your mongodb collections for the hooplaDB database.
    
 
@@ -33,3 +33,11 @@ NOTE: The backend assumes that the Mongodb server is running on port 27017 of yo
 1. Start the mongodb server (If it is not already running)
 2. Start the backend server
 3. Start the ui server
+
+## Running over Https
+
+https://fmoralesdev.com/2020/01/03/serve-angular-app-over-https-using-angular-cli/
+
+1. Create Trusted certificate for machine.
+2. Install created certificate
+3. Put certificate genertaed certificate files on required directory.

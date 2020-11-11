@@ -35,7 +35,7 @@ export class RegisterService {
 
   //To check whether particular email is already registered or not.
   check(emailId:string): Observable<User>{
-    return this.http.get<any>('http://localhost:3000/user/register/search/'+emailId)
+    return this.http.get<any>(this.userMicroServiceUrl+'register/search/'+emailId)
   }
 }
 

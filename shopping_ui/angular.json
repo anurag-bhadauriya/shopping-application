@@ -65,7 +65,9 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "HooplaUI:build"
+            "browserTarget": "HooplaUI:build",
+            "sslKey": "ssl-certificate/server.key",
+            "sslCert": "ssl-certificate/server.crt"
           },
           "configurations": {
             "production": {
