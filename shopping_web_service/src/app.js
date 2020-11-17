@@ -7,8 +7,8 @@ const errorLogger = require('./utilities/errorLogger');
 const userRouter = require('./routes/userRouting');
 const cartRouter=require('./routes/cartRouting');
 const productRouting = require('./routes/productRouting')
-const createDb = require("./model/dbsetup");
-const bodyParser = require("body-parser");
+const createDb = require('./model/dbsetup');
+const bodyParser = require('body-parser');
 const cors = require('cors');
 
 app.use(cors());
@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 app.use(requestLogger);
 app.use('/user', userRouter);
 app.use('/cart', cartRouter);
-app.use('/product', productRouting)
+app.use('/product', productRouting);
 app.use(errorLogger);
 
 
@@ -27,7 +27,7 @@ app.get('/setupDb', (req, res, next) => {
     }).catch((err) => {
         next(err)
     })
-})
+});
 
 //To Run server over Https
 const privateKey  = fs.readFileSync('../ssl-certificate/server.key', 'utf8');
