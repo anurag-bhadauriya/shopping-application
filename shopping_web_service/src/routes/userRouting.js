@@ -1,15 +1,26 @@
 const express = require('express');
 const userRouter = express.Router();
 const hooplaUserService = require('../service/users');
+const jwt = require('jsonwebtoken');
 
 //User LOGIN
 userRouter.post('/login', (req, res, next) => {
-    console.log(req.body);
     let uEmail = req.body.uEmail;
     let uPass = req.body.uPass; 
     return hooplaUserService.userLogin(uEmail, uPass).then((item) => {
-        // console.log(item);
-        res.json(item);
+        const user = {
+            id: Date.now(),
+            userEmail: req.body.uEmail,
+            password: req.body.uPass
+        }
+        jwt.sign({user}, 'secretkey' , (err, token)=> {
+            let data = {
+                token: token,
+                userData: item
+            }
+            res.json(data);
+        })
+        // res.json(item);
     }).catch(err => next(err))
 });
 

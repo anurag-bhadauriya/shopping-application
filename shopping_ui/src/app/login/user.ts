@@ -2,6 +2,12 @@
 /**
  * This is a model class which has the attributes to keep User properties
  */
+
+ export class LoginToken {
+     token: string = "";
+     userData: User = new User(); 
+ }
+
 export class User {
     //_id?:           string      =   "";
     uCart:          Cart[]      =   [];

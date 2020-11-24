@@ -17,17 +17,18 @@
     "body-parser": "^1.18.3",
     "cookie-parser": "^1.4.3",
     "cors": "^2.8.5",
+    "debug": "~2.6.9",
     "encoding": "^0.1.12",
     "express": "^4.16.4",
-    "mongoose": "^5.4.6",
-    "nodemon": "^1.18.9",
+    "forever": "~0.15.3",
     "http-errors": "~1.6.2",
     "jade": "~1.11.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.4.6",
     "morgan": "~1.9.0",
+    "nodemon": "^1.18.9",
     "pm2": "^2.10.2",
-    "request": "^2.85.0",
-    "debug": "~2.6.9",
-    "forever": "~0.15.3"
+    "request": "^2.85.0"
   },
   "devDependencies": {
     "eslint": "^4.19.1",

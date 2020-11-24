@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 
 import { HttpClient } from '@angular/common/http';
 
-import { User,Credentials } from './user';
+import { LoginToken, User,Credentials } from './user';
 import { UriService } from '../uri.service';
 
 @Injectable()
@@ -14,8 +14,8 @@ export class RegisterService {
   }
 
   //To be called when login is initiated
-  login(userCredential:Credentials): Observable<User> {
-    return this.http.post(this.userMicroServiceUrl+'login',userCredential) as Observable<User>;
+  login(userCredential:Credentials): Observable<LoginToken> {
+    return this.http.post(this.userMicroServiceUrl+'login',userCredential) as Observable<LoginToken>;
   }
 
   //To be called when logout is initiated

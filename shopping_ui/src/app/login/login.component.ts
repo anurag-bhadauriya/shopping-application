@@ -11,6 +11,7 @@ import {ButtonModule} from 'primeng/button';
 import { RegisterService } from './register.service';
 import { Credentials } from './user';
 import { MessageService } from 'primeng/api';
+import { TokenStorageService } from '../shared/token-storage.service';
 
 @Component({
   selector: 'app-login-user',
@@ -21,7 +22,8 @@ export class LoginComponent implements OnInit {
   errorMessage: string=null;
   successMessage: string=null;
   loginForm: FormGroup;
-  constructor(private fb: FormBuilder, private registerService: RegisterService, private router: Router) {
+  constructor(private fb: FormBuilder, private registerService: RegisterService, private router: Router,
+    private tokenStorage: TokenStorageService) {
     this.createForm();
   }
   createForm() {
@@ -40,10 +42,11 @@ export class LoginComponent implements OnInit {
     user.uEmail=this.loginForm.value.emailId;
     this.registerService.login(user).subscribe(
       (response) => {
-        sessionStorage.setItem("uEmail", response.uCredentials.uEmail);
-        sessionStorage.setItem("uRole", response.uProfile.uIsSeller.toString());
-        sessionStorage.setItem("uName",response.uProfile.uName)
-        sessionStorage.setItem("uCart", JSON.stringify(response.uCart));
+        this.tokenStorage.saveToken(response.token);
+        sessionStorage.setItem("uEmail", response.userData.uCredentials.uEmail);
+        sessionStorage.setItem("uRole", response.userData.uProfile.uIsSeller.toString());
+        sessionStorage.setItem("uName",response.userData.uProfile.uName)
+        sessionStorage.setItem("uCart", JSON.stringify(response.userData.uCart));
         this.router.navigate(['/dashboard']); 
       },
       (errorResponse) => {

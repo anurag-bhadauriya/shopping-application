@@ -40,7 +40,7 @@ import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { SidebarModule } from 'primeng/sidebar';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { InputTextareaModule } from 'primeng/inputtextarea';
-
+import { authInterceptorProviders } from './shared/auth.interceptor';
 
 
 @NgModule({
@@ -62,7 +62,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     TooltipModule, SpinnerModule, ScrollPanelModule, SidebarModule, PanelMenuModule, InputTextareaModule
 
   ],
-  providers: [MessageService, UriService, RegisterService, GuardService],
+  providers: [authInterceptorProviders, MessageService, UriService, RegisterService, GuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
